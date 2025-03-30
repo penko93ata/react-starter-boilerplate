@@ -29,6 +29,7 @@ export default defineConfig([
                     caughtErrorsIgnorePattern: "^_",
                 },
             ],
+            "@typescript-eslint/no-unused-vars": "off",
         },
     },
 ]);

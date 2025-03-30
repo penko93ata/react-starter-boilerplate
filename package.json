@@ -7,7 +7,10 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write ."
     },
     "dependencies": {
         "react": "^19.0.0",
