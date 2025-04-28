@@ -1,4 +1,5 @@
 import { Post } from "@/types/post";
+import { User } from "@/types/user";
 import { queryOptions } from "@tanstack/react-query";
 
 export const getPosts = queryOptions({
@@ -9,12 +10,14 @@ export const getPosts = queryOptions({
     },
 });
 
-export const getPostById = (id: number) =>
+export const getPostById = (postId: string) =>
     queryOptions({
-        queryKey: ["GET_POST_BY_ID", id],
+        queryKey: ["GET_POST_BY_ID", postId],
         queryFn: async () => {
-            const post: Post = await (await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)).json();
-            return post;
+            const post: Post = await (await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)).json();
+
+            const user: User = await (await fetch(`https://jsonplaceholder.typicode.com/users/${post?.userId}`)).json();
+            return { post, user };
         },
     });
 export const getCommentsByPostId = (id: number) =>
